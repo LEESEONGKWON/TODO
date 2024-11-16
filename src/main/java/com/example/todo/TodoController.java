@@ -8,6 +8,6 @@ public class TodoController {
 
     @GetMapping("/")
     public String home() {
-        return "Welcome to the TODO Application!";
+        return "수정도니 커밋 2024-11-26 입니다";
     }
 }
