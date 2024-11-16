@@ -20,9 +20,15 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+// Spring Boot의 메인 클래스를 지정하는 부분
+springBoot {
+	mainClass = 'com.example.todo.TodoApplication'  // 메인 클래스를 지정
 }
 
 tasks.named('bootJar') {
