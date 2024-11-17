@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+/*화면 전체를 스타일링*/
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -18,8 +19,10 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 300px;
+    width: 1000px;
+    height : 500px;
     padding: 20px;
+    text-align: center;
 }
 
 .header {

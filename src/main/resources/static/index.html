@@ -1,63 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kloud</title>
-    <!-- 수정된 CSS 경로 -->
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
+
 <body>
 <div class="calendar">
     <div class="header">
-        <span class="month">November 2024</span>
+
+
+        <span class="month" id="month-name">November 2024</span>
     </div>
+    <button id="prev-month" onclick="changeMonth(-1)">←</button>
+    <button id="next-month" onclick="changeMonth(1)">→</button>
     <div class="days">
-        <div class="day">Sun</div>
         <div class="day">Mon</div>
         <div class="day">Tue</div>
         <div class="day">Wed</div>
         <div class="day">Thu</div>
         <div class="day">Fri</div>
         <div class="day">Sat</div>
+        <div class="day">Sun</div>
     </div>
-    <div class="dates">
-        <!-- 빈 칸을 적절히 추가하여 1일이 금요일에 시작되도록 설정 -->
-        <div class="date"></div> <!-- Sun -->
-        <div class="date"></div> <!-- Mon -->
-        <div class="date"></div> <!-- Tue -->
-        <div class="date"></div> <!-- Wed -->
-        <div class="date">1</div> <!-- Thu -->
-        <div class="date">2</div> <!-- Fri -->
-        <div class="date">3</div> <!-- Sat -->
-        <div class="date">4</div>
-        <div class="date">5</div>
-        <div class="date">6</div>
-        <div class="date">7</div>
-        <div class="date">8</div>
-        <div class="date">9</div>
-        <div class="date">10</div>
-        <div class="date">11</div>
-        <div class="date">12</div>
-        <div class="date">13</div>
-        <div class="date">14</div>
-        <div class="date">15</div>
-        <div class="date">16</div>
-        <div class="date">17</div>
-        <div class="date">18</div>
-        <div class="date">19</div>
-        <div class="date">20</div>
-        <div class="date">21</div>
-        <div class="date">22</div>
-        <div class="date">23</div>
-        <div class="date">24</div>
-        <div class="date">25</div>
-        <div class="date">26</div>
-        <div class="date">27</div>
-        <div class="date">28</div>
-        <div class="date">29</div>
-        <div class="date">30</div>
+    <div id="date-container" class="dates">
+        <!-- 날짜가 동적으로 여기에 추가됩니다. -->
     </div>
 </div>
+
+<script>
+    let currentYear = new Date().getFullYear(); // 현재 연도
+    let currentMonth = new Date().getMonth(); // 현재 월 (0부터 시작: 0 = 1월, 1 = 2월, ..., 11 = 12월)
+
+    // 달력을 생성하는 함수
+    function generateCalendar(year, month) {
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const firstDay = new Date(year, month, 1).getDay(); // 첫째 날 요일
+        const daysInMonth = new Date(year, month + 1, 0).getDate(); // 그 달의 일 수
+
+        // 월 이름 업데이트
+        document.getElementById('month-name').textContent = `${monthNames[month]} ${year}`;
+
+        // 날짜 container를 초기화
+        const dateContainer = document.getElementById('date-container');
+        dateContainer.innerHTML = ''; // 기존 내용 삭제
+
+        // 빈 공간 추가 (첫째 날이 시작되는 위치까지)
+        for (let i = 0; i < firstDay; i++) {
+            const emptyDiv = document.createElement('div');
+            emptyDiv.classList.add('date');
+            dateContainer.appendChild(emptyDiv);
+        }
+
+        // 날짜 추가
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dateDiv = document.createElement('div');
+            dateDiv.classList.add('date');
+            dateDiv.textContent = day;
+            dateContainer.appendChild(dateDiv);
+        }
+    }
+
+    // 달을 변경하는 함수 (이전 달 또는 다음 달)
+    function changeMonth(direction) {
+        currentMonth += direction;
+
+        // 12월 이후 1월로 넘어가고, 1월 이전 12월로 넘어가도록 처리
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        } else if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+
+        // 새 달을 생성
+        generateCalendar(currentYear, currentMonth);
+    }
+
+    // 처음에는 현재 날짜의 달을 표시
+    generateCalendar(currentYear, currentMonth);
+</script>
 </body>
+
 </html>
