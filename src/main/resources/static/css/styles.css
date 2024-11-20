@@ -6,23 +6,34 @@
 
 /*화면 전체를 스타일링*/
 body {
+    font-size: 1vw;
+    flex-direction: column; /* 수직 정렬 */
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+
 }
 
 .calendar {
     background-color: white;
-    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     overflow: hidden;
-    width: 1000px;
-    height : 500px;
+    width: 1000px; height : 500px;
     padding: 20px;
     text-align: center;
+}
+
+.calendar2{
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    width: 600px; height : 1000px;
+    text-align: center;
+    margin : 30px;
 }
 
 .header {
@@ -60,7 +71,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+.today {border: 2px solid #ff9900; /* 테두리 강조 */}
 
-.date:hover {
-    background-color: #ccc;
-}
+
+.date:hover {background-color: #ccc;}
