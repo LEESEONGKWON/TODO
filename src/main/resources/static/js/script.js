@@ -101,28 +101,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 새 달을 생성
         generateCalendar(currentYear, currentMonth);
-        displayDayString(); // calendar2의 내용도 새롭게 출력
+
     }
 
-    // dayString을 calendar2에 출력하는 함수
-    function displayDayString() {
-        const dayStringContainer = document.getElementById('day-string');
-        dayStringContainer.innerHTML = ''; // 기존 내용 삭제
-
-        // 해당 달의 1일부터 마지막 날까지 출력
-        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-        for (let day = 1; day <= daysInMonth; day++) {
-            const note = getDayString(currentYear, currentMonth, day);
-            const dayNoteDiv = document.createElement('div');
-            const date = new Date(currentYear, currentMonth, day);
-            const dayOfWeek = date.toLocaleDateString('ko-KR', { weekday: 'long' });
-            dayNoteDiv.textContent = `${day}일시 : ${currentYear}.${currentMonth + 1}.${day} [${dayOfWeek}] : ${note}`;
-            dayStringContainer.appendChild(dayNoteDiv);
-        }
-    }
-
-    // 처음 페이지가 로드되었을 때 dayString을 출력
-    displayDayString();
 
     // 달력 생성
     generateCalendar(currentYear, currentMonth);
